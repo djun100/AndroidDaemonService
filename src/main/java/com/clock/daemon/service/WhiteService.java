@@ -26,14 +26,14 @@ public class WhiteService extends Service {
 
     @Override
     public void onCreate() {
-        Log.writeW( "WhiteService->onCreate");
+        Log.writeW( "process white: WhiteService->onCreate");
         UtilShowAlive.show(getClass().getName());
         super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.writeW( "WhiteService->onStartCommand");
+        Log.writeW( "process white:WhiteService->onStartCommand");
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.mipmap.ic_launcher);
@@ -57,7 +57,7 @@ public class WhiteService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.writeW( "WhiteService->onDestroy");
+        Log.writeW( "process white:WhiteService->onDestroy");
         super.onDestroy();
     }
 }

@@ -20,7 +20,7 @@ public class BackgroundService extends Service {
     @Override
     public void onCreate() {
         Log.writeW( "onCreate");
-        UtilShowAlive.show(getClass().getName());
+        UtilShowAlive.show("process bg:"+getClass().getName());
         super.onCreate();
     }
 

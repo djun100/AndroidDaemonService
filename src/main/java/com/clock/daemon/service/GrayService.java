@@ -32,13 +32,13 @@ public class GrayService extends Service {
 
     @Override
     public void onCreate() {
-        Log.writeW( "GrayService->onCreate");
+        Log.writeW( "process gray: GrayService->onCreate");
         super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.writeW( "GrayService->onStartCommand");
+        Log.writeW( "process gray:GrayService->onStartCommand");
         if (Build.VERSION.SDK_INT < 18) {
             startForeground(GRAY_SERVICE_ID, new Notification());//API < 18 ，此方法能有效隐藏Notification上的图标
         } else {
@@ -64,7 +64,7 @@ public class GrayService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.writeW( "GrayService->onDestroy");
+        Log.writeW( "process gray:GrayService->onDestroy");
         super.onDestroy();
     }
 
@@ -75,14 +75,14 @@ public class GrayService extends Service {
 
         @Override
         public void onCreate() {
-            Log.writeW( "InnerService -> onCreate");
+            Log.writeW( "process gray:InnerService -> onCreate");
             UtilShowAlive.show(getClass().getName());
             super.onCreate();
         }
 
         @Override
         public int onStartCommand(Intent intent, int flags, int startId) {
-            Log.writeW( "InnerService -> onStartCommand");
+            Log.writeW( "process gray:InnerService -> onStartCommand");
             startForeground(GRAY_SERVICE_ID, new Notification());
             //stopForeground(true);
             stopSelf();
@@ -97,7 +97,7 @@ public class GrayService extends Service {
 
         @Override
         public void onDestroy() {
-            Log.writeW( "InnerService -> onDestroy");
+            Log.writeW( "process gray:InnerService -> onDestroy");
             super.onDestroy();
         }
     }

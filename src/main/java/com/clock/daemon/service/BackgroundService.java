@@ -3,7 +3,9 @@ package com.clock.daemon.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
+
+import com.clock.daemon.UtilShowAlive;
+import com.cy.app.Log;
 
 /**
  * 普通的后台Service进程
@@ -17,7 +19,8 @@ public class BackgroundService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, "onCreate");
+        Log.writeW( "onCreate");
+        UtilShowAlive.show(getClass().getName());
         super.onCreate();
     }
 
@@ -29,7 +32,7 @@ public class BackgroundService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, "onDestroy");
+        Log.writeW( "onDestroy");
         super.onDestroy();
     }
 }

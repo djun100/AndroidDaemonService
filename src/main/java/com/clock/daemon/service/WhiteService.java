@@ -6,10 +6,11 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.clock.daemon.MainActivity;
 import com.clock.daemon.R;
+import com.clock.daemon.UtilShowAlive;
+import com.cy.app.Log;
 
 /**
  * 正常的系统前台进程，会在系统通知栏显示一个Notification通知图标
@@ -25,13 +26,14 @@ public class WhiteService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, "WhiteService->onCreate");
+        Log.writeW( "WhiteService->onCreate");
+        UtilShowAlive.show(getClass().getName());
         super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "WhiteService->onStartCommand");
+        Log.writeW( "WhiteService->onStartCommand");
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.mipmap.ic_launcher);
@@ -55,7 +57,7 @@ public class WhiteService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, "WhiteService->onDestroy");
+        Log.writeW( "WhiteService->onDestroy");
         super.onDestroy();
     }
 }

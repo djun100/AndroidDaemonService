@@ -9,6 +9,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.clock.daemon.UtilShowAlive;
+
 public class WakeReceiver extends BroadcastReceiver {
 
     private final static String TAG = WakeReceiver.class.getSimpleName();
@@ -23,7 +25,7 @@ public class WakeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (GRAY_WAKE_ACTION.equals(action)) {
-            Log.i(TAG, "wake !! wake !! ");
+            com.cy.app.Log.writeW( "wake !! wake !! ");
 
             Intent wakeIntent = new Intent(context, WakeNotifyService.class);
             context.startService(wakeIntent);
@@ -38,6 +40,7 @@ public class WakeReceiver extends BroadcastReceiver {
         @Override
         public void onCreate() {
             Log.i(TAG, "WakeNotifyService->onCreate");
+            UtilShowAlive.show("main:"+getClass().getName());
             super.onCreate();
         }
 
@@ -75,6 +78,7 @@ public class WakeReceiver extends BroadcastReceiver {
         @Override
         public void onCreate() {
             Log.i(TAG, "InnerService -> onCreate");
+            UtilShowAlive.show("main:"+getClass().getName());
             super.onCreate();
         }
 

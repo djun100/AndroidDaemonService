@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.clock.daemon">
-
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -51,11 +54,86 @@
             android:name=".receiver.WakeReceiver$WakeNotifyService"
             android:enabled="true"
             android:exported="false" />
-
         <service
             android:name=".receiver.WakeReceiver$WakeGrayInnerService"
             android:enabled="true"
             android:exported="false" />
+
+        <receiver
+            android:name="com.cy.receiver.SystemReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="90000">
+                <!--屏幕解锁-->
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+            <intent-filter android:priority="666">
+                <!--接收短信-->
+                <!--<uses-permission android:name="android.permission.RECEIVE_SMS"/>  -->
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+            </intent-filter>
+
+            <intent-filter>
+                <!--监听系发出的电话状态-->
+                <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />  -->
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+            <intent-filter>
+                <!--打电话-->
+                <!--<uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />  -->
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+            <intent-filter>
+                <!--开机-->
+                <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <!--网络连接改变-->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <!--设置时间-->
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DATE_CHANGED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <intent-filter>
+                <!--连上电源线-->
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <!--拔掉电源线-->
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+            <intent-filter>
+                <!--其他应用安装卸载更新-->
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_RESTARTED" />
+                <action android:name="android.intent.action.PACKAGE_DATA_CLEARED" />
+                <action android:name="android.intent.action.PACKAGES_SUSPENDED" />
+                <action android:name="android.intent.action.PACKAGES_UNSUSPENDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <!--存储卡媒体浏览-->
+                <action android:name="android.intent.action.MEDIA_BAD_REMOVAL" />
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.MEDIA_REMOVED" />
+                <action android:name="android.intent.action.MEDIA_SCANNER_FINISHED" />
+                <action android:name="android.intent.action.MEDIA_SCANNER_STARTED" />
+                <action android:name="android.intent.action.MEDIA_SHARED" />
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />
+                <data android:scheme="file" />
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

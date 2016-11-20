@@ -13,7 +13,7 @@ public class UtilShowAlive {
             public void run() {
                 while (true){
                     try {
-                        Thread.sleep(5*60*1000);//5分钟打印一次
+                        Thread.sleep(10*60*1000);//10分钟打印一次
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

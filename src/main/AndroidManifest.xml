@@ -31,11 +31,6 @@
         </receiver>
 
         <service
-            android:name=".service.WhiteService"
-            android:enabled="true"
-            android:exported="false"
-            android:process=":white" />
-        <service
             android:name=".service.GrayService"
             android:enabled="true"
             android:exported="false"
@@ -45,11 +40,6 @@
             android:enabled="true"
             android:exported="false"
             android:process=":gray" />
-        <service
-            android:name=".service.BackgroundService"
-            android:enabled="true"
-            android:exported="false"
-            android:process=":bg" />
         <service
             android:name=".receiver.WakeReceiver$WakeNotifyService"
             android:enabled="true"

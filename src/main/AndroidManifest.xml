@@ -40,6 +40,7 @@
             android:enabled="true"
             android:exported="false"
             android:process=":gray" />
+
         <service
             android:name=".receiver.WakeReceiver$WakeNotifyService"
             android:enabled="true"

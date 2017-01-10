@@ -51,8 +51,11 @@ public class GrayService extends Service {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent alarmIntent = new Intent();
         alarmIntent.setAction(WakeReceiver.GRAY_WAKE_ACTION);
-        PendingIntent operation = PendingIntent.getBroadcast(this, WAKE_REQUEST_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), ALARM_INTERVAL, operation);
+        PendingIntent operation = PendingIntent.getBroadcast(
+                this, WAKE_REQUEST_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //每5分钟,唤醒WakeReceiver
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                ALARM_INTERVAL, operation);
 
         return START_STICKY;
     }

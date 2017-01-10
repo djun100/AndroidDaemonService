@@ -25,8 +25,7 @@ public class WakeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (GRAY_WAKE_ACTION.equals(action)) {
-            com.cy.app.Log.writeW( "wake !! wake !! ");
-
+            com.cy.app.Log.writeW( "WakeReceiver被阶段性唤醒");
             Intent wakeIntent = new Intent(context, WakeNotifyService.class);
             context.startService(wakeIntent);
         }

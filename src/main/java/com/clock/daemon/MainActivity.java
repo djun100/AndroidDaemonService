@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.clock.daemon.service.GrayService;
+
 import com.cy.app.Log;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

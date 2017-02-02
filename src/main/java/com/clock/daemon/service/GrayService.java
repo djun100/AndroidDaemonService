@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 
-import com.clock.daemon.UtilShowAlive;
 import com.clock.daemon.receiver.WakeReceiver;
 import com.cy.app.Log;
 
@@ -73,19 +72,17 @@ public class GrayService extends Service {
 
     /**
      * 给 API >= 18 的平台上用的灰色保活手段
+     * 一生即灭，用于保活的辅助service
      */
     public static class GrayInnerService extends Service {
 
         @Override
         public void onCreate() {
-            Log.writeW( "process gray:InnerService -> onCreate");
-            UtilShowAlive.show(getClass().getName());
             super.onCreate();
         }
 
         @Override
         public int onStartCommand(Intent intent, int flags, int startId) {
-            Log.writeW( "process gray:InnerService -> onStartCommand");
             startForeground(GRAY_SERVICE_ID, new Notification());
             //stopForeground(true);
             stopSelf();
@@ -94,13 +91,11 @@ public class GrayService extends Service {
 
         @Override
         public IBinder onBind(Intent intent) {
-            // TODO: Return the communication channel to the service.
             throw new UnsupportedOperationException("Not yet implemented");
         }
 
         @Override
         public void onDestroy() {
-            Log.writeW( "process gray:InnerService -> onDestroy");
             super.onDestroy();
         }
     }

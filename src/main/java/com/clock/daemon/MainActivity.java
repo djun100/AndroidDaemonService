@@ -21,10 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.btn_white).setOnClickListener(this);
         findViewById(R.id.btn_gray).setOnClickListener(this);
         findViewById(R.id.btn_black).setOnClickListener(this);
-        findViewById(R.id.btn_background_service).setOnClickListener(this);
 
     }
 
